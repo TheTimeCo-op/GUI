@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Timey Wimey</title>
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="./vendor/materialize/css/materialize.min.css">
+  <link rel="stylesheet" href="./assets/styles/main.css">
+            
+  </head>
+  <body>
+      <nav>
+          <div class="nav-wrapper" id="nav-bar">
+            <a href="#" class="brand-logo left" id="title">Wibbly Wobbly Timey Wimey</a>
+            <a href="#" class="right">Add Job</a>
+          </div>
+        </nav>
+        <ul class="side-nav fixed side-links">
+          <div class="row">
+            <h5>Current Time</h5>
+            <div id="currentTime">...</div>
+            <div id="currentSeconds"></div>
+          </div>
+          <hr>
+          <div class="row">
+            <h5>Total week time</h5>
+            <div id="currentWeekTime">...</div>
+            <div id="currentWeekSeconds"></div>
+          </div>
+          <hr>
+          <div class="row">
+            <h5>Time left in the day</h5>
+            <div id="timeLeftInDay">...</div>
+            <div id="timeLeftInDaySeconds"></div>
+          </div>
+          <hr>
+          <div class="row">
+            <h5>Estimated end time</h5>
+            <div id="estimatedEndTime">...</div>
+            <div id="estimatedEndTimeSeconds"></div>
+          </div>
+          <hr>
+        </ul>
+      <div class="main">
+        <div class='row center-align'>
+        </div>
+        <div class="row">
+            <div id="jobs"></div>
+        </div>
+        <div class="container" id="container">
+        </div>
+      </div>
+  </body>
+  <script>
+    require('./renderer.js')
+  </script>
+</html>
