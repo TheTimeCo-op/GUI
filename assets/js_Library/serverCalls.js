@@ -1,5 +1,5 @@
 let get = (url, cb) => {
-  var xhttp;
+  let xhttp;
   xhttp=new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -11,42 +11,44 @@ let get = (url, cb) => {
 }
 
 let post = (url, data, cb) => {
-  var xhttp;
-  var paramString;
+  let xhttp;
+  let paramString;
+  let prop;
 
   for (prop in data) {
     if (paramString && paramString.length > 0) paramString += `&${prop}=${data[prop]}`
     else paramString = `${prop}=${data[prop]}`
   }
 
-  xhttp=new XMLHttpRequest();
+  xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       cb(this);
     }
  };
- console.log(url)
+
   xhttp.open("POST", url, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(paramString);
 }
 
 let put = (url, data, cb) => {
-  var xhttp;
-  var paramString;
+  let xhttp;
+  let paramString;
+  let prop;
   
   for (prop in data) {
     if (paramString && paramString.length > 0) paramString += `&${prop}=${data[prop]}`
     else paramString = `${prop}=${data[prop]}`
   }
   
-  xhttp=new XMLHttpRequest();
+  xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       cb(this);
     }
- };
- console.log(url)
+  };
+
   xhttp.open("PUT", url, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send(paramString);
