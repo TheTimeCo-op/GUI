@@ -70,34 +70,44 @@
 "use strict";
 
 
+//-----------------------{ Library }-----------------------//
 var http = __webpack_require__(1);
 var util = __webpack_require__(2);
 var $ = __webpack_require__(3);
 var moment = __webpack_require__(4);
 
+//-----------------------{ Components }-----------------------//
 var JobsComponent = __webpack_require__(6);
 var jobs = new JobsComponent(http, util, $, moment);
 
+//-----------------------{ Rendering }-----------------------//
 // Initial load
 jobs.render();
 jobs.getJobs();
 jobs.listen();
 
-//Load other on click
-//Example
+// Load other components on button click
+//
+// EXAMPLE:
+//
 // $.on('click', 'addJob', (event) => {
 //    addJob.render()
 //    addJob.listen()
 // })
 
 
-var updateCurrentTime = function updateCurrentTime(currentTime) {
+/**
+ * Update Current Time
+ * 
+ * @description This function will update the html every time it's called to update the time
+ */
+var updateCurrentTime = function updateCurrentTime() {
   $.grabById('currentTime').innerHTML = moment().format('h:mm');
   $.grabById('currentSeconds').innerHTML = moment().format(':ss a');
 };
 
 setInterval(function () {
-  updateCurrentTime(currentTime);
+  updateCurrentTime();
 }, 1000);
 
 /***/ }),
@@ -4707,7 +4717,7 @@ var JobsComponent = function () {
   _createClass(JobsComponent, [{
     key: 'render',
     value: function render() {
-      this.renderHtml('<div class=\'row center-align\'>\n        </div>\n        <div class="row">\n            <div id="jobs"></div>\n        </div>');
+      this.renderHtml('<div class=\'row center-align\'></div>\n         <div class="row">\n            <div id="jobs"></div>\n         </div>');
     }
 
     /**
@@ -4726,7 +4736,8 @@ var JobsComponent = function () {
     /**
      * Get Jobs
      * 
-     * @description utilizes the http serverCalls file to make a request that returns all jobs
+     * @description utilizes the http serverCalls file to make a request that returns all jobs.
+     *              It then renders the Job Card component and adds it to the #jobs element
      */
 
   }, {
@@ -4739,6 +4750,7 @@ var JobsComponent = function () {
         // currentWeekTime = response.total_time
         var card = new JobCardComponent(response.jobs);
         var renderedHtml = card.render();
+        console.log(renderedHtml);
         _this.$.grabById('jobs').innerHTML = renderedHtml;
       });
     }
@@ -4746,7 +4758,7 @@ var JobsComponent = function () {
     /**
      * Listen
      * 
-     * All event logic / DOM manipulation goes here
+     * @description All event logic / DOM manipulation goes here
      */
 
   }, {
@@ -4835,7 +4847,7 @@ var JobCardComponent = function () {
   _createClass(JobCardComponent, [{
     key: 'render',
     value: function render() {
-      this.renderHtml();
+      return this.renderHtml();
     }
 
     /**

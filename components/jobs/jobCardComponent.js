@@ -11,7 +11,7 @@ class JobCardComponent {
    *              It calls renderHtml, passing in the html to be rendered
    */
   render() {
-    this.renderHtml()
+    return this.renderHtml()
   }
 
   /**
