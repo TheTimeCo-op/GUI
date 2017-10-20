@@ -280,6 +280,30 @@ var grabPreviousSibling = function grabPreviousSibling(className, event) {
   return sibling;
 };
 
+//ALEX's CODE//
+
+// ======issue #14 - Current clocked in should be visible======
+
+/**
+ * currentJob
+ *
+ *@description  Allows the user to see what job they are currently "clocked in" to on the 'Current Job' display.
+                The user can also "clock out", thus removing the job name from the 'Current Job' display.
+ */
+
+var currentJob = document.querySelector('body').addEventListener('click', function (e) {
+  var displayCurrentJob = document.getElementById("currentJob");7;
+  var grabCurrentJob = "<h4>" + e.target.previousElementSibling.innerHTML + "</h4>";
+
+  if (e.target.className.includes("clock-in-btn")) {
+    displayCurrentJob.innerHTML = grabCurrentJob;
+  } else if (e.target.className.includes("clock-out-btn")) {
+    displayCurrentJob.innerHTML = " ";
+  };
+});
+
+//END ALEX's CODE//
+
 module.exports = {
   on: on,
   grabAttr: grabAttr,
@@ -288,7 +312,8 @@ module.exports = {
   grabByClass: grabByClass,
   grabByIdInContainer: grabByIdInContainer,
   grabNextSibling: grabNextSibling,
-  grabPreviousSibling: grabPreviousSibling
+  grabPreviousSibling: grabPreviousSibling,
+  currentJob: currentJob
 };
 
 /***/ }),
@@ -4750,7 +4775,6 @@ var JobsComponent = function () {
         // currentWeekTime = response.total_time
         var card = new JobCardComponent(response.jobs);
         var renderedHtml = card.render();
-        console.log(renderedHtml);
         _this.$.grabById('jobs').innerHTML = renderedHtml;
       });
     }
