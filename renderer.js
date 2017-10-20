@@ -41,5 +41,3 @@ setInterval(
   }, 1000)
 
 
-
-

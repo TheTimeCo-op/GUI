@@ -80,6 +80,36 @@ let grabPreviousSibling = (className, event) => {
   return sibling
 }
 
+//ALEX's CODE//
+
+// ======issue #14 - Current clocked in should be visible======
+
+/**
+ * currentJob
+ *
+ *@description  Allows the user to see what job they are currently "clocked in" to on the 'Current Job' display.
+                The user can also "clock out", thus removing the job name from the 'Current Job' display.
+ *
+ *
+ *@THOUGHTS     I would like to make it so that when a job is clocked in the other jobs 'clock in' buttons will be disabled 
+                until the current job has been clocked out. Or I guess from a freelancer viewpoint, can you be clocked into
+                multiple jobs at a time? Also, do you want to display the total time spent on the clocked in job? 
+ */
+
+let currentJob =
+    document.querySelector('body').addEventListener('click',function(e){
+        let displayCurrentJob = document.getElementById("currentJob");7
+        let grabCurrentJob = "<h5>" + e.target.previousElementSibling.innerHTML + "</h5>";
+       
+        if(e.target.className.includes("clock-in-btn")) {
+            displayCurrentJob.innerHTML = grabCurrentJob;
+        } else if (e.target.className.includes("clock-out-btn")) {
+            displayCurrentJob.innerHTML = " ";           
+        };
+ });
+
+//END ALEX's CODE//
+
 module.exports = {
   on: on,
   grabAttr: grabAttr,
@@ -88,5 +118,6 @@ module.exports = {
   grabByClass: grabByClass,
   grabByIdInContainer: grabByIdInContainer,
   grabNextSibling: grabNextSibling,
-  grabPreviousSibling: grabPreviousSibling
+  grabPreviousSibling: grabPreviousSibling,
+  currentJob: currentJob
 }
